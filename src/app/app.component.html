@@ -1,6 +1,72 @@
-<app-navbar></app-navbar>
+<app-header>
+  <a header-title class="navbar-brand">
+    @if (user$ | async; as user) {
+      Welcome to EverShop, {{ user.firstName }}
+    } @else {
+      EverShop
+    }
+  </a>
+  <form header-actions class="d-flex" role="search">
 
-<app-loader></app-loader>
-<router-outlet></router-outlet>
+    <a type="button" class="btn" routerLink="/home" routerLinkActive="active"
+      >Home</a
+      
+    >
+    <a type="button" class="btn" routerLink="/about" routerLinkActive="active">About</a>
 
-<app-footer></app-footer>
+  <a type="button" class="btn" routerLink="/services" routerLinkActive="active"
+  >services</a
+  
+>
+    <a type="button" class="btn" routerLink="/cart" routerLinkActive="active"
+      >Cart</a
+    >
+    @if (user$ | async) {
+      <button type="button" class="btn" (click)="authService.signOut()">
+        Sign Out
+      </button>
+    } @else {
+      <a type="button" class="btn" routerLink="/auth" routerLinkActive="active"
+        ><i class="fas fa-user"></i>        </a
+      >
+    }
+    <input
+      class="form-control me-2"
+      type="search"
+      placeholder="Search"
+      aria-label="Search"
+    />
+    <button class="btn btn-outline-success" type="button">Search</button>
+  </form>
+</app-header>
+<!-- <app-header>
+  <a header-title class="navbar-brand">logo </a>
+  <form header-actions class="d-flex" role="search">
+    <a type="button" class="btn" routerLink="/auth" routerLinkActive="active">Auth</a>
+    <a type="button" class="btn" routerLink="/home" routerLinkActive="active">Home</a>
+    <a type="button" class="btn" routerLink="/cart" routerLinkActive="active">Cart</a>
+    <input
+      class="form-control me-2"
+      type="search"
+      placeholder="Search"
+      aria-label="Search"
+    />
+    <button class="btn btn-outline-success" type="button">Search</button>
+  </form>
+  
+</app-header> -->
+
+<div>
+
+</div>
+
+
+<div class="container">
+  <router-outlet></router-outlet>
+</div>
+
+
+<!-- 
+<app-footer>
+
+</app-footer> -->

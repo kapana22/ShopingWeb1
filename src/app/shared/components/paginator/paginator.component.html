@@ -1,0 +1,26 @@
+<div class="paginator">
+  <button
+    class="btn btn-primary"
+    [disabled]="pageIndex <= 1"
+    (click)="pageIndexChange.next(pageIndex - 1)"
+  >
+    &lt;
+  </button>
+  <button
+    class="btn btn-primary"
+    [disabled]="total / pageSize === pageIndex"
+    (click)="pageIndexChange.emit(pageIndex + 1)"
+  >
+    &gt;
+  </button>
+  <p>{{ pageIndex }} of {{ (total / pageSize).toFixed() }}</p>
+  <select
+    class="form-select"
+    [(ngModel)]="pageSize"
+    (ngModelChange)="this.pageSizeChange.emit(this.pageSize)"
+  >
+    @for (option of sizeOptions; track $index) {
+      <option [value]="option">{{ option }}</option>
+    }
+  </select>
+</div>
